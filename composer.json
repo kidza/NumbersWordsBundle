@@ -1,0 +1,24 @@
+{
+    "name": "pear/numbers_words",
+    "type": "library",
+    "description": "Translating numbers to words",
+    "keywords": ["numbers", "words", "translating","pear"],
+    "homepage": "https://github.com/pear/Numbers_Words",
+    "license": "PHP License 3.02",
+    "authors": [
+        {
+            "name": "Daniel O'Connor",
+            "email": "daniel.oconnor@gmail.com",
+            "role": "Pear Developer"
+        },
+        {
+            "name": "Jakub Roszkiewicz",
+            "email": "j.roszkiewicz@vaka.pl",
+            "role": "Symfony Developer"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Numbers_Words": "" }
+    },
+    "include-path": [""]
+}
