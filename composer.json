@@ -2,7 +2,7 @@
     "name": "pear/numbers_words",
     "type": "library",
     "description": "Translating numbers to words",
-    "keywords": ["numbers", "words", "translating","pear"],
+    "keywords": ["numbers", "words", "translation","pear", "conversion"],
     "homepage": "https://github.com/pear/Numbers_Words",
     "license": "PHP License 3.02",
     "authors": [
