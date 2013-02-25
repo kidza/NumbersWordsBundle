@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="pear.numberswords.locale_detector.request.class">Pear\NumbersWordsBundle\Locale\RequestDetector</parameter>
+
+        <parameter key="pear.numberswords.templating.helper.numbertoword.class">Pear\NumbersWordsBundle\Templating\Helper\NumberToWordHelper</parameter>
+
+        <parameter key="pear.numberswords.twig.helper.numbertoword.class">Pear\NumbersWordsBundle\Twig\Extension\NumberToWordExtension</parameter>
+    </parameters>
+
+    <services>
+        <service id="pear.numberswords.locale_detector.request" class='%pear.numberswords.locale_detector.request%' >
+            <argument type="service" id="service_container" strict="false" />
+            <argument />
+        </service>
+
+        <service id="pear.numberswords.templating.helper.numbertoword" class="%pear.numberswords.templating.helper.numbertoword.class%">
+            <tag name="templating.helper" alias="numbertoword" />
+            <argument>%kernel.charset%</argument>
+            <argument type="service" id="pear.numberswords.locale_detector" />
+        </service>
+
+        <service id="pear.numberswords.twig.extension.numbertoword" class="%pear.numberswords.twig.helper.numbertoword.class%" public="false">
+            <tag name="twig.extension" />
+            <argument type="service" id="pear.numberswords.templating.helper.numbertoword" />
+        </service>
+
+    </services>
+</container>

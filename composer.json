@@ -4,7 +4,7 @@
     "description": "Translating numbers to words",
     "keywords": ["numbers", "words", "translation","pear", "conversion"],
     "homepage": "https://github.com/pear/Numbers_Words",
-    "license": "PHP License 3.02",
+    "license": "PHP License 3.01",
     "authors": [
         {
             "name": "Daniel O'Connor",
