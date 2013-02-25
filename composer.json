@@ -20,6 +20,6 @@
     "autoload": {
         "psr-0": { "Pear\\NumbersWordsBundle": "" }
     },
-    "target-dir": "Pear/NumberWordsBundle",
+    "target-dir": "Pear/NumbersWordsBundle",
     "include-path": [""]
 }
