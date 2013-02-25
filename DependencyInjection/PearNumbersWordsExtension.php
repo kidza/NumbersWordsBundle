@@ -78,7 +78,7 @@ class PearNumbersWordsExtension extends Extension
      */
     public function getAlias()
     {
-        return "pear_numberswords";
+        return "pear_numbers_words";
     }
 
 }
