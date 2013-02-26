@@ -18,8 +18,7 @@
         }
     ],
     "autoload": {
-        "psr-0": { "Pear\\NumbersWordsBundle": "" }
+        "psr-0": { "Pear\\NumbersWordsBundle": "", "Numbers": "Numbers/" }
     },
-    "target-dir": "Pear/NumbersWordsBundle",
-    "include-path": [""]
+    "target-dir": "Pear/NumbersWordsBundle"
 }
