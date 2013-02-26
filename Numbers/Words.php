@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Numbers_Words
  *
@@ -23,7 +24,6 @@
  * @version  SVN: $Id$
  * @link     http://pear.php.net/package/Numbers_Words
  */
-
 // {{{ Numbers_Words
 
 /**
@@ -37,8 +37,12 @@
  * @since    PHP 4.2.3
  * @access   public
  */
-class Numbers_Words
-{
+
+namespace Pear\NumbersWordsBundle\Numbers;
+
+use Pear\NumbersWordsBundle\Numbers;
+
+class Words {
     // {{{ properties
 
     /**
@@ -46,7 +50,7 @@ class Numbers_Words
      * @var string
      * @access public
      */
-    var $locale = 'en_US';
+    static $locale = 'en_US';
 
     // }}}
     // {{{ toWords()
@@ -65,75 +69,27 @@ class Numbers_Words
      * @since  PHP 4.2.3
      * @return string  The corresponding word representation
      */
-    function toWords($num, $locale = '', $options = array())
-    {
+    static function toWords($num, $locale = '', $options = array()) {
         if (empty($locale)) {
-            $locale = $this->locale;
+            $locale = self::$locale;
         }
 
         if (empty($locale)) {
             $locale = 'en_US';
         }
 
-        require_once "Numbers/Words/lang.${locale}.php";
-
-        $classname = "Numbers_Words_${locale}";
-
-        if (!class_exists($classname)) {
-            return Numbers_Words::raiseError("Unable to include the Numbers/Words/lang.${locale}.php file");
-        }
-
-        $methods = get_class_methods($classname);
-
-        if (!in_array('_toWords', $methods) && !in_array('_towords', $methods)) {
-            return Numbers_Words::raiseError("Unable to find _toWords method in '$classname' class");
-        }
+        //$x = new Words\enUS;
 
         if (!is_int($num)) {
             // cast (sanitize) to int without losing precision
             $num = preg_replace('/^[^\d]*?(-?)[ \t\n]*?(\d+)([^\d].*?)?$/', '$1$2', $num);
         }
-
-        $truth_table  = ($classname == get_class($this)) ? 'T' : 'F';
-        $truth_table .= (empty($options)) ? 'T' : 'F';
-
-        switch ($truth_table) {
-
-        /**
-         * We are a language driver
-         */
-        case 'TT':
-            return trim($this->_toWords($num));
-            break;
-
-        /**
-         * We are a language driver with custom options
-         */
-        case 'TF':
-            return trim($this->_toWords($num, $options));
-            break;
-
-        /**
-         * We are the parent class
-         */
-        case 'FT':
-            @$obj = new $classname;
-            return trim($obj->_toWords($num));
-            break;
-
-        /**
-         * We are the parent class and should pass driver options
-         */
-        case 'FF':
-            @$obj = new $classname;
-            return trim($obj->_toWords($num, $options));
-            break;
-
-        }
-
+        $classname = 'Pear\NumbersWordsBundle\Numbers\Words\\' . str_replace('_', '', $locale);
+        $obj = new $classname;
+        return trim($obj->_toWords($num));
     }
-    // }}}
 
+    // }}}
     // {{{ toCurrency()
     /**
      * Converts a currency value to word representation (1.02 => one dollar two cents)
@@ -155,8 +111,7 @@ class Numbers_Words
      * @since  PHP 4.2.3
      * @return string
      */
-    function toCurrency($num, $locale = 'en_US', $int_curr = '')
-    {
+    function toCurrency($num, $locale = 'en_US', $int_curr = '') {
         $ret = $num;
 
         @include_once "Numbers/Words/lang.${locale}.php";
@@ -194,10 +149,10 @@ class Numbers_Words
         } elseif ($len > 2) {
             // get the 3rd digit after the comma
             $round_digit = substr($currency[1], 2, 1);
-            
+
             // cut everything after the 2nd digit
             $currency[1] = substr($currency[1], 0, 2);
-            
+
             if ($round_digit >= 5) {
                 // round up without losing precision
                 include_once "Math/BigInteger.php";
@@ -218,8 +173,8 @@ class Numbers_Words
 
         return trim($obj->toCurrencyWords($int_curr, $currency[0], $currency[1]));
     }
-    // }}}
 
+    // }}}
     // {{{ getLocales()
     /**
      * Lists available locales for Numbers_Words
@@ -236,8 +191,7 @@ class Numbers_Words
      * @static
      * @return mixed[]
      */
-    function getLocales($locale = null)
-    {
+    function getLocales($locale = null) {
         $ret = array();
         if (isset($locale) && is_string($locale)) {
             $locale = array($locale);
@@ -251,7 +205,7 @@ class Numbers_Words
             while ($fname = readdir($dh)) {
                 if (preg_match('#^lang\.([a-z_]+)\.php$#i', $fname, $matches)) {
                     if (is_file($dname . $fname) && is_readable($dname . $fname) &&
-                        (!isset($locale) || in_array($matches[1], $locale))) {
+                            (!isset($locale) || in_array($matches[1], $locale))) {
                         $ret[] = $matches[1];
                     }
                 }
@@ -262,8 +216,8 @@ class Numbers_Words
 
         return $ret;
     }
-    // }}}
 
+    // }}}
     // {{{ raiseError()
     /**
      * Trigger a PEAR error
@@ -274,11 +228,10 @@ class Numbers_Words
      *
      * @return PEAR_Error
      */
-    function raiseError($msg)
-    {
-        include_once 'PEAR.php';
-        return PEAR::raiseError($msg);
+    static function raiseError($msg) {
+        die($msg); //@TODO rzucic wyjatkiem symfony
     }
+
     // }}}
 }
 
