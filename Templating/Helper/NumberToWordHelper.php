@@ -17,7 +17,7 @@ use Pear\NumbersWordsBundle\Locale\LocaleDetectorInterface;
  * @author Vaka Software
  * @author Jakub Roszkiewicz <j.roszkiewicz@vaka.pl>
  */
-class NumerToWordsHelper extends BaseHelper
+class NumberToWordsHelper extends BaseHelper
 {
     /**
      * @param string                    $charset
