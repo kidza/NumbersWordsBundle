@@ -26,17 +26,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->scalarNode('locale')->defaultValue(false)->end()
-                ->arrayNode('timezone')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->scalarNode('service')->end()
-                        ->scalarNode('default')->defaultValue(date_default_timezone_get())->end()
-                        ->arrayNode('locales')
-                            ->defaultValue(array())
-                            ->useAttributeAsKey('name')
-                            ->prototype('scalar')
-                        ->end()
-                    ->end()
                 ->end()
             ->end();
 

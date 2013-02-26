@@ -47,7 +47,7 @@ class PearNumbersWordsExtension extends Extension
         if (version_compare(PearNumbersWordsBundle::getSymfonyVersion(Kernel::VERSION), '2.1.0', '>=')) {
             $container->getDefinition('pear.numberswords.locale_detector.request')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('kernel.default_locale'));
             $container->setAlias('pear.numberswords.locale_detector', 'pear.numberswords.locale_detector.request');
-            $container->removeDefinition('pear.numberswords.locale_detector.session');
+            //$container->removeDefinition('pear.numberswords.locale_detector.session');
         } else {
             $container->getDefinition('pear.numberswords.locale_detector.session')->replaceArgument(1, $config['locale'] ? $config['locale'] : $container->getParameter('session.default_locale'));
             $container->setAlias('pear.numberswords.locale_detector', 'pear.numberswords.locale_detector.session');

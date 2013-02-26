@@ -13,7 +13,7 @@
     </parameters>
 
     <services>
-        <service id="pear.numberswords.locale_detector.request" class='%pear.numberswords.locale_detector.request%' >
+        <service id="pear.numberswords.locale_detector.request" class='%pear.numberswords.locale_detector.request.class%' >
             <argument type="service" id="service_container" strict="false" />
             <argument />
         </service>
