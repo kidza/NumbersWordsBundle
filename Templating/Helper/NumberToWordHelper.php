@@ -12,7 +12,6 @@
 namespace Pear\NumbersWordsBundle\Templating\Helper;
 
 use Pear\NumbersWordsBundle\Locale\LocaleDetectorInterface;
-use Pear\NumbersWordsBundle\Numbers;
 
 /**
  * @author Vaka Software
@@ -36,7 +35,7 @@ class NumberToWordHelper extends BaseHelper
      */
     public function numberToWord($number, $locale = null)
     {        
-        return Words::toWords($number, $locale);
+        return \Pear\NumbersWordsBundle\Numbers\Words::toWords($number, $locale);
     }
 
     /**
