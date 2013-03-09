@@ -35,7 +35,7 @@ class NumberToWordHelper extends BaseHelper
      */
     public function numberToWord($number, $locale = null)
     {        
-        return \Pear\NumbersWordsBundle\Numbers\Words::toWords($number, $locale);
+        return \Pear\NumbersWordsBundle\Numbers\Words::toWords($number, $locale ?: $this->localeDetector->getLocale());
     }
 
     /**
