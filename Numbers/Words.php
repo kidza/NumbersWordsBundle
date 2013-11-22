@@ -111,7 +111,7 @@ class Words {
      * @since  PHP 4.2.3
      * @return string
      */
-    function toCurrency($num, $locale = 'en_US', $int_curr = '') {
+    static function toCurrency($num, $locale = 'en_US', $int_curr = '') {
         $ret = $num;
 
 //         @include_once "Numbers/Words/lang.${locale}.php";
